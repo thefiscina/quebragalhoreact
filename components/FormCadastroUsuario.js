@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, Button, View, Text, TextInput, Picker } from 'react-native'
 import DatePicker from 'react-native-datepicker'
-import NavigationBar from '../components/NavigationBar'
-import Footer from '../components/Footer'
+import NavigationBar from './NavigationBar'
+import Footer from './Footer'
 
 export default class FormCadastroUsuario extends React.Component {
     state = this.props.value || {

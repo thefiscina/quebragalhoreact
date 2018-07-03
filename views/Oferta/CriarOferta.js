@@ -23,11 +23,15 @@ export default class CriarOferta extends Component {
     render () {
       return (
         <View style={styles.container}>
+          <NavigationBar goBack={() => this.props.history.push('/')} />
           <Text>Cadastrar Oferta</Text>
           <FormCadastroOferta
             onSave={this.onSave.bind(this)}
             onCancel={() => this.props.history.push('/')}
           />
+           <View style={{ flex: 0.1 }}>
+                    <Footer />
+                </View>
         </View>
       )
     }

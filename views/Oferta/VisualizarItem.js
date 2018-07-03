@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, ScrollView, Text, ImageBackground, PixelRatio, Linking, Alert } from 'react-native'
-import NavigationBar from '../components/NavigationBar'
-import Footer from '../components/Footer'
+import NavigationBar from '../../components/NavigationBar'
+import Footer from '../../components/Footer'
 
 
 export default class VisualizarItem extends React.Component {  

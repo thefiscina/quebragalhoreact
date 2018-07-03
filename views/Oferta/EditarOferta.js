@@ -41,7 +41,7 @@ export default class EditarOferta extends Component {
 
         return (
             <View style={styles.container}>
-                <NavigationBar />
+                <NavigationBar goBack={() => this.props.history.push('/')} />
                 <Text>Editar Oferta</Text>
                 {!Oferta && (
                     <Text>Não ha nenhuma Oferta</Text>

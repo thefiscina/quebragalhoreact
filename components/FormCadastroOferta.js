@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, Picker, StyleSheet } from 'react-native'
+import { View, Text, Picker, StyleSheet , TextInput} from 'react-native'
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
-import NavigationBar from '../../components/NavigationBar'
-import Footer from '../../components/Footer'
+import NavigationBar from './NavigationBar'
+import Footer from './Footer'
 export default class FormCadastroOferta extends React.Component {
 
     state = this.props.value || {
@@ -12,7 +12,7 @@ export default class FormCadastroOferta extends React.Component {
         tempoOferta: { tempoOferta: '2018-06-13' },
         endereco: ''
     }
-
+  
     componentWillReceiveProps(nextProps) {
         if (nextProps.value) {
             this.setState(nextProps.value)
@@ -22,7 +22,7 @@ export default class FormCadastroOferta extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <NavigationBar goBack={() => this.props.history.push('/')} />
+              
                 <Text>Cadastro Oferta</Text>
                 <View>
                     <Text>Nome da oferta</Text>
@@ -76,10 +76,7 @@ export default class FormCadastroOferta extends React.Component {
                         value={this.state.endereco}
                         onChangeText={endereco => this.setState({ endereco })}
                     />
-                </View>
-                <View style={{ flex: 0.1 }}>
-                    <Footer />
-                </View>
+                </View>              
             </View>
         )
     }
@@ -88,9 +85,6 @@ export default class FormCadastroOferta extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        marginTop: 60,
-        paddingLeft: 20,
-        paddingRight: 20
+        flex: 1      
     }
 });

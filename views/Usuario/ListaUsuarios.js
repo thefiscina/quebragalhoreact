@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, ScrollView, View, Text, PixelRatio, Alert, Button } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
-import NavigationBar from '../components/NavigationBar'
-import Footer from '../components/Footer'
+import NavigationBar from '../../components/NavigationBar'
+import Footer from '../../components/Footer'
 
 export default class ListaQuebraGalho extends React.Component {
 

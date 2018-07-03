@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, Alert } from 'react-native'
-import FormCadastroUsuario from '../components/FormCadastroUsuario'
-import NavigationBar from '../components/NavigationBar'
-import Footer from '../components/Footer'
+import FormCadastroUsuario from '../../components/FormCadastroUsuario'
+import NavigationBar from '../../components/NavigationBar'
+import Footer from '../../components/Footer'
 import qs from 'querystring'
 
 export default class EditarUsuario extends Component {
