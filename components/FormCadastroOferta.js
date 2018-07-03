@@ -2,14 +2,21 @@ import React from 'react'
 import { View, Text, Picker, StyleSheet } from 'react-native'
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
-import NavigationBar from '../components/NavigationBar'
-import Footer from '../components/Footer'
+import NavigationBar from '../../components/NavigationBar'
+import Footer from '../../components/Footer'
 export default class FormCadastroOferta extends React.Component {
 
+    state = this.props.value || {
+        nome: '',
+        descricao: '',
+        tempoOferta: { tempoOferta: '2018-06-13' },
+        endereco: ''
+    }
 
-    constructor(props) {
-        super(props)
-        this.state = { date: '2018-06-13' }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.value) {
+            this.setState(nextProps.value)
+        }
     }
 
     render() {
@@ -17,26 +24,29 @@ export default class FormCadastroOferta extends React.Component {
             <View style={styles.container}>
                 <NavigationBar goBack={() => this.props.history.push('/')} />
                 <Text>Cadastro Oferta</Text>
-                <View >
-                    <FormLabel>Nome da Oferta</FormLabel>
-                    <FormInput />
-                    <FormValidationMessage>Error message</FormValidationMessage>
+                <View>
+                    <Text>Nome da oferta</Text>
+                    <TextInput
+                        placeholder='Digite o nome da oferta'
+                        value={this.state.nome}
+                        onChangeText={nome => this.setState({ nome })}
+                    />
                 </View>
 
-                <View >
-                    <FormLabel>Tipo de oferta</FormLabel>
-                    <Picker>
-                        <Picker.Item label='Baixa' value='BAIXA' />
-                        <Picker.Item label='Media' value='MEDIA' />
-                        <Picker.Item label='Alta' value='ALTA' />
-                    </Picker>
+                <View>
+                    <Text>Descricao da oferta</Text>
+                    <TextInput
+                        placeholder='Descreva sua oferta'
+                        value={this.state.descricao}
+                        onChangeText={descricao => this.setState({ descricao })}
+                    />
                 </View>
 
                 <View >
                     <FormLabel>Validade da oferta</FormLabel>
                     <DatePicker
                         style={{ width: 200 }}
-                        date={this.state.date}
+                        date={this.state.tempoOferta}
                         mode="date"
                         placeholder="selecione da data"
                         format="YYYY-MM-DD"
@@ -55,7 +65,16 @@ export default class FormCadastroOferta extends React.Component {
                                 marginLeft: 36
                             }
                         }}
-                        onDateChange={(date) => { this.setState({ date: date }) }}
+                        onDateChange={(date) => { this.setState({ tempoOferta: date }) }}
+                    />
+                </View>
+
+                 <View>
+                    <Text>Endereço</Text>
+                    <TextInput
+                        placeholder='Insira o endereço'
+                        value={this.state.endereco}
+                        onChangeText={endereco => this.setState({ endereco })}
                     />
                 </View>
                 <View style={{ flex: 0.1 }}>
