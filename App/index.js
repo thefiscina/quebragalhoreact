@@ -15,7 +15,7 @@ export default () => (
       <Switch>
         <Route path='/cadastroUsuario' component={CriarUsuario} />
         <Route path='/criarOferta' component={CriarOferta} />
-        <Route path='/:ofertaId' component={EditarOferta} />
+        <Route path='/:ofertaId' component={VisualizarItem} />
         {/* <Route path='/:pageId' component={EditarUsuario} /> */}
         <Route component={ListaQuebraGalho} />
       </Switch>

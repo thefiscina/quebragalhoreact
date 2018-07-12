@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, ScrollView, View, Text, PixelRatio, Alert, Button } from 'react-native'
+import { StyleSheet, ScrollView, View, Text, PixelRatio, Alert, Button, TouchableHighlight } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
 import NavigationBar from '../../components/NavigationBar'
 import Footer from '../../components/Footer'
@@ -39,18 +39,20 @@ export default class ListaQuebraGalho extends React.Component {
         if (ListaOferta != null && ListaOferta.length > 0) {
             try {
                 return (
-                    <List containerStyle={{ marginBottom: 20 }}>
-                        {
-                            ListaOferta.map((item, i) => (
-                                <View key={i} style={{ flex: 0.1, height: 50, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                                    <Text style={{ flex: 0.6 }}>{item.nome}</Text>
-                                    <Text style={{ flex: 0.6 }}>{item.descricao}</Text>
-                                    <Button style={{ flex: 0.2 }} title='Editar' onPress={() => this.props.history.push('/' + item._id)} />
-                                    <Button style={{ flex: 0.2 }} title='Excluir' onPress={() => this.onDelete(item._id)} />
-                                </View>
-                            ))
-                        }
-                    </List>
+                    ListaOferta.map((item, i) => (
+                        <List key={item._id}>
+                            <TouchableHighlight  onPress={() => this.props.history.push('/' + item._id)}>
+                                <ListItem                                                                        
+                                    title={item.nome}
+                                    subtitle={
+                                        <View style={styles.subtitleView}>                                           
+                                            <Text style={styles.ratingText}>{item.descricao}</Text>
+                                        </View>
+                                    }
+                                />
+                            </TouchableHighlight>
+                        </List>
+                    ))                   
                 );
             } catch (ex) {
                 return (<Text>Erro ao exibir dados</Text>);
@@ -90,5 +92,18 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 20,
         paddingRight: 20
+    },
+    subtitleView: {
+        flexDirection: 'row',
+        paddingLeft: 10,
+        paddingTop: 5
+    },
+    ratingImage: {
+        height: 19.21,
+        width: 100
+    },
+    ratingText: {
+        paddingLeft: 10,
+        color: 'grey'
     }
 })
