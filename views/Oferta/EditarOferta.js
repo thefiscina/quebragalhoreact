@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Alert } from 'react-native'
+import { StyleSheet, View, Text, Alert, ScrollView } from 'react-native'
 import FormCadastroOferta from '../../components/FormCadastroOferta'
 import NavigationBar from '../../components/NavigationBar'
 import Footer from '../../components/Footer'
@@ -8,12 +8,11 @@ import qs from 'querystring'
 
 export default class EditarOferta extends Component {
     state = {
-        Oferta: undefined
+        Oferta: null
     }
 
     onSave(data) {
         const ofertaId = this.props.match.params.ofertaId
-
         const options = {
             method: 'PUT',
             body: qs.stringify(data),
@@ -30,29 +29,60 @@ export default class EditarOferta extends Component {
 
     componentDidMount() {
         const ofertaId = this.props.match.params.ofertaId
-
+        console.log(ofertaId)
         fetch(`https://crudapiteste.herokuapp.com/api/v1/oferta/${ofertaId}`, { method: 'GET' })
             .then(T => T.json())
             .then(Oferta => this.setState({ Oferta }))
     }
 
-    render() {
-        const { Oferta } = this.state
 
+    verificarDados(Oferta) {        
+        if (Oferta != null) {
+            var oferta = Oferta;
+            console.log("Oferta: " + oferta)
+            // if (Oferta.result != null) {
+            //     console.log("resultado " +  Oferta.result) 
+                // try {
+                //     return (
+                //         <FormCadastroOferta
+                //             value={Oferta}
+                //             onSave={this.onSave.bind(this)}
+                //             onCancel={() => this.props.history.push('/')}
+                //         />
+                //     );
+                // } catch (ex) {
+                //     return (<Text>Erro ao exibir dados</Text>);
+                // } 
+            // }
+        } else {
+            return (
+                <Text>Sem dados para exibir</Text>
+            );
+        }
+    }
+
+    render() {
+        // const { Oferta } = this.state
+        //var Oferta = this.state.Oferta != null ? this.state.Oferta.Object : null;
         return (
             <View style={styles.container}>
                 <NavigationBar goBack={() => this.props.history.push('/')} />
-                <Text>Editar Oferta</Text>
-                {!Oferta && (
-                    <Text>Não ha nenhuma Oferta</Text>
-                )}
-                {Oferta && (
-                    <FormCadastroOferta
-                        value={Oferta}
-                        onSave={this.onSave.bind(this)}
-                        onCancel={() => this.props.history.push('/')}
-                    />
-                )}
+                <ScrollView style={styles.content}>
+                    { 
+                        this.verificarDados( this.state.Oferta != null? JSON.stringify(this.state.Oferta) : null)}
+                </ScrollView>
+                {/* <ScrollView style={styles.content}>                    
+                    {!Oferta && (
+                        <Text>Não ha nenhuma Oferta</Text>
+                    )}
+                    {Oferta && (
+                        <FormCadastroOferta
+                            value={Oferta}
+                            onSave={this.onSave.bind(this)}
+                            onCancel={() => this.props.history.push('/')}
+                        />
+                    )}
+                </ScrollView> */}
                 <View style={{ flex: 0.1 }}>
                     <Footer />
                 </View>
@@ -64,8 +94,10 @@ export default class EditarOferta extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
+    },
+    content: {
+        flex: 1,
+        paddingLeft: 20,
+        paddingRight: 20
     }
 })

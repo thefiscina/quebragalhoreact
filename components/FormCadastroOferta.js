@@ -21,9 +21,8 @@ export default class FormCadastroOferta extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-              
-                <Text>Cadastro Oferta</Text>
+            <View style={styles.container}>        
+              <View style={styles.tituloContainer}>Oferta</View>                            
                 <View>
                     <Text>Nome da oferta</Text>
                     <TextInput
@@ -76,6 +75,11 @@ export default class FormCadastroOferta extends React.Component {
                         value={this.state.endereco}
                         onChangeText={endereco => this.setState({ endereco })}
                     />
+                </View>  
+
+                  <View > 
+                    <Button style={styles.btnContainer} title='Salvar' disabled={this.state.nome === ''} onPress={() => this.props.onSave(this.state)} />
+                    <Button style={styles.btnContainer} title='Cancelar' onPress={this.props.onCancel} />
                 </View>              
             </View>
         )
@@ -86,5 +90,13 @@ export default class FormCadastroOferta extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1      
+    },
+    btnContainer:{
+        margin:10,
+        paddingTop:10  
+    },
+    tituloContainer:{
+        margin:10,
+        paddingTop:10  
     }
 });

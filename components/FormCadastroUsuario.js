@@ -22,7 +22,8 @@ export default class FormCadastroUsuario extends React.Component {
 
     render() { 
         return (
-            <View style={styles.container}>                
+            <View style={styles.container}>          
+             
                 <View>
                     <Text>Nome usuario</Text>
                     <TextInput
@@ -64,6 +65,10 @@ const styles = StyleSheet.create({
         flex: 1,        
     },
     btnContainer:{
+        margin:10,
+        paddingTop:10  
+    },
+    tituloContainer:{
         margin:10,
         paddingTop:10  
     }
